@@ -7,9 +7,9 @@ function App() {
 
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData); //data = dados
-    console.log(data);
+    // console.log(data);
 
-    fetch('http://localhost:3003/?tracking' + data.tracking)
+    fetch(`http://localhost:3003/?tracking=${data.tracking}`)
       .then((response) => response.json())
       .then(console.log) //se der certo !
       .catch(console.error); //caso ocorra erro
