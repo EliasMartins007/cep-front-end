@@ -15,11 +15,9 @@ function App() {
     //   .catch(console.error); //caso ocorra erro
 
     fetch(`http://localhost:3003/?tracking=${data.tracking}`)
-      .then((response) => {
-        response.json();
-      })
+      .then((response) => response.json())
       .then(console.log) //se der certo !
-      .catch(console.error); //caso ocorra erro
+      .catch((error) => console.error); //caso ocorra erro
   };
 
   return (
