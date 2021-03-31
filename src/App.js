@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
+import TrackCep from './TrackCep';
 
 function App() {
+  const [events, setEvents] = useState([]);
+
+  //para função array do cep necessaria
+  const convertToArray = (obj) => {
+    const arr = [obj];
+    return arr;
+  };
+
   const submitHandler = (e) => {
     e.preventDefault();
 
@@ -16,8 +25,19 @@ function App() {
 
     fetch(`http://localhost:3003/?tracking=${data.tracking}`)
       .then((response) => response.json())
-      .then(console.log) //se der certo !
+      .then((data) => {
+        //console.log(data);
+        const array = convertToArray(data);
+        console.log(array);
+        setEvents(array);
+      }) //se der certo !
       .catch((error) => console.error); //caso ocorra erro
+
+    /*original funcionando  31/03/2021
+       fetch(`http://localhost:3003/?tracking=${data.tracking}`)
+      .then((response) => response.json())
+      .then(console.log) //se der certo !
+      .catch((error) => console.error); //caso ocorra erro   */
   };
 
   return (
@@ -31,6 +51,7 @@ function App() {
           Buscar
         </button>
       </form>
+      <TrackCep events={events} />
     </div>
   );
 }
