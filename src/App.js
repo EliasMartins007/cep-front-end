@@ -9,8 +9,15 @@ function App() {
     const data = Object.fromEntries(formData); //data = dados
     // console.log(data);
 
+    // fetch(`http://localhost:3003/?tracking=${data.tracking}`)
+    //   .then((response) => response.json())
+    //   .then(console.log) //se der certo !
+    //   .catch(console.error); //caso ocorra erro
+
     fetch(`http://localhost:3003/?tracking=${data.tracking}`)
-      .then((response) => response.json())
+      .then((response) => {
+        response.json();
+      })
       .then(console.log) //se der certo !
       .catch(console.error); //caso ocorra erro
   };
